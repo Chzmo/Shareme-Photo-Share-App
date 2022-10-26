@@ -44,15 +44,15 @@ export default {
             type: 'postedBy',
         },
         {
-            name:'sace',
-            title: 'UserID',
-            type: 'arry',
+            name:'ssaveace',
+            title: 'Save',
+            type: 'array',
             of:[{type: 'save'}]
         },
         {
             name:'comments',
             title: 'Comments',
-            type: 'arry',
+            type: 'array',
             of:[{type: 'comment'}]
         },
 
