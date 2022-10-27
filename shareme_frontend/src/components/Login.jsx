@@ -1,11 +1,12 @@
-import React from 'react'
-import GoogleLogin from 'react-google-login'
-import {gapi} from 'gapi-script'
-import {Navigate, useNavigate} from 'react-router-dom'
-import {FcGoogle} from 'react-icons/fc'
-import shareVideo from '../assets/share.mp4'
-import logo from '../assets/logowhite.png'
-import { useEffect } from 'react'
+import React from 'react';
+import GoogleLogin from 'react-google-login';
+import {gapi} from 'gapi-script';
+import {Navigate, useNavigate} from 'react-router-dom';
+import {FcGoogle} from 'react-icons/fc';
+import shareVideo from '../assets/share.mp4';
+import logo from '../assets/logowhite.png';
+import { useEffect } from 'react';
+import client from '../client';
 
 function Login() {
     const clientId = process.env.REACT_APP_GOOGLE_API_TOKEN
@@ -27,7 +28,7 @@ function Login() {
             image: imageUrl,
         }
 
-        clientId.createIfNotExists(doc)
+        client.createIfNotExists(doc)
             .then(() => {
                 navigate('/', {replace:true})
             })
