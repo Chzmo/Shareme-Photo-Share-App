@@ -2,7 +2,7 @@
 import sanityClient from '@sanity/client';
 import imageUrlBulder from '@sanity/image-url';
 
-const client = sanityClient({
+export const client = sanityClient({
     projectId: process.env.REACT_APP_SANITY_PROJECT_ID,
     dataset:'production',
     apiVersion: '2020-10-21',
@@ -12,6 +12,4 @@ const client = sanityClient({
 });
 
 const builder = imageUrlBulder(client);
-const urlFor = (source) => builder.image(source);
-
-export default urlFor
+export const urlFor = (source) => builder.image(source);

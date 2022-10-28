@@ -6,7 +6,7 @@ import {FcGoogle} from 'react-icons/fc';
 import shareVideo from '../assets/share.mp4';
 import logo from '../assets/logowhite.png';
 import { useEffect } from 'react';
-import client from '../client';
+import { client } from '../client';
 
 function Login() {
     const clientId = process.env.REACT_APP_GOOGLE_API_TOKEN
@@ -19,7 +19,6 @@ function Login() {
     
     const responseGoogle =(response)=>{       
         localStorage.setItem('user', JSON.stringify(response.profileObj))
-        console.log(response);
         const {name, googleId, imageUrl} = response.profileObj; 
         const doc = {
             _id: googleId,
