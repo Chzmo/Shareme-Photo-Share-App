@@ -11,7 +11,7 @@ import logo from '../assets/logo.png';
 function Home() {
   return (
     <div className='flex bg-gray-50 md:flex-row flex-col h-screen transaction-height duration-75 ease-out'>
-      Home
+      
     </div>
   )
 }
