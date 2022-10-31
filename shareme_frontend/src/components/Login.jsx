@@ -22,7 +22,7 @@ function Login() {
         const {name, googleId, imageUrl} = response.profileObj; 
         const doc = {
             _id: googleId,
-            _type: 'User',
+            _type: 'user',
             userName:name,
             image: imageUrl,
         }

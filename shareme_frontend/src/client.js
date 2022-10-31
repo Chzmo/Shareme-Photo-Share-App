@@ -1,4 +1,3 @@
-
 import sanityClient from '@sanity/client';
 import imageUrlBulder from '@sanity/image-url';
 

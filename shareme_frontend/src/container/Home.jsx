@@ -20,6 +20,10 @@ function Home() {
     client.fetch(query)
       .then((data)=>{
         setUser(data[0]);
+        console.log(data);
+      })
+      .catch((data)=>{
+        console.log(data);
       })
   }, []);
   
@@ -35,9 +39,10 @@ function Home() {
           <img src={logo} alt="logo" className="w-28"/>
         </Link>
 
-        <Link to={`user-profile/${user?._id}`}>
-          <img src={logo} alt="logo" className="w-28"/>
-        </Link>
+        {//<Link to={`user-profile/${user?._id}`}>
+          //<img src={logo} alt="logo" className="w-28"/>
+        //</Link>
+      }
 
       </div>
     </div>

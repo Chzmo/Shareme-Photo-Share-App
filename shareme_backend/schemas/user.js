@@ -1,6 +1,4 @@
-
-
-const user = {
+export default  {
     name: 'user',
     title: 'User',
     type: 'document',
@@ -17,5 +15,3 @@ const user = {
         }
     ]
 }
-
-export default user
