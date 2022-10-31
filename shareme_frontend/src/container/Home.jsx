@@ -22,9 +22,6 @@ function Home() {
         setUser(data[0]);
         console.log(data);
       })
-      .catch((data)=>{
-        console.log(data);
-      })
   }, []);
   
   
