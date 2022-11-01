@@ -29,8 +29,14 @@ function Login() {
 
         client.createIfNotExists(doc)
             .then(() => {
+                client.fetch(
+                    `*[_type == "user"]`
+                )
+                .then((data) => console.log(data))
                 navigate('/', {replace:true})
             })
+            .catch(console.error);
+
     }
     return (
         <div className='flex justify-start items-center flex-col h-screen'>
