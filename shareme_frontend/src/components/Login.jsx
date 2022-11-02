@@ -20,6 +20,7 @@ function Login() {
     const responseGoogle =(response)=>{       
         localStorage.setItem('user', JSON.stringify(response.profileObj));
         const {name, googleId, imageUrl} = response.profileObj; 
+        console.log(googleId, name, imageUrl);
         const doc = {
             _id: googleId,
             _type: 'user',
@@ -27,8 +28,7 @@ function Login() {
             image: imageUrl,
         }
 
-        client.createIfNotExists(doc)
-            .then(() => {
+        client.createOrReplace(doc).then(() => {
                 client.fetch(
                     `*[_type == "user"]`
                 )
