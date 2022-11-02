@@ -16,7 +16,27 @@ function Login() {
             gapi.auth2.init({clientId:clientId});
         })
     })
+
+    const mutations = [{
+        createOrReplace: {
+          _id: '123',
+          _type: 'cms.article',
+          title: 'An article'
+        }
+      }]
     
+      fetch(`https://${projectId}.api.sanity.io/v2021-06-07/data/mutate/${datasetName}`, {
+        method: 'post',
+        headers: {
+            'Content-type': 'application/json',
+            Authorization: `Bearer ${tokenWithWriteAccess}`
+        },
+        body: JSON.stringify({mutations})
+        })
+        .then(response => response.json())
+        .then(result => console.log(result))
+        .catch(error => console.error(error))
+
     const responseGoogle =(response)=>{       
         localStorage.setItem('user', JSON.stringify(response.profileObj));
         const {name, googleId, imageUrl} = response.profileObj; 
