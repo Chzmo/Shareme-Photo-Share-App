@@ -37,7 +37,7 @@ function Login() {
     //     .then(result => console.log(result))
     //     .catch(error => console.error(error))
 
-    const responseGoogle =(response)=>{       
+    const responseGoogle = (response)=>{       
         localStorage.setItem('user', JSON.stringify(response.profileObj));
         const {name, googleId, imageUrl} = response.profileObj; 
         console.log(googleId, name, imageUrl);
@@ -48,14 +48,15 @@ function Login() {
             image: imageUrl,
         }
 
-        client.createOrReplace(doc).then(() => {
+        client.createIfNotExists(doc)
+        .then(() => {
                 client.fetch(
                     `*[_type == "user"]`
                 )
                 .then((data) => console.log(data))
                 navigate('/', {replace:true})
             })
-            .catch(console.error);
+        .catch(console.error);
 
     }
     return (
