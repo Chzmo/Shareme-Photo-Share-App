@@ -1,11 +1,11 @@
 {
   "root": true,
-  "api": {
-    "projectId": "1yhanj31",
-    "dataset": "production"
-  },
   "project": {
-    "name": "shareme_reactjs"
+    "name": "REACT_SHAREME"
+  },
+  "api": {
+    "projectId": "8j8x3nki",
+    "dataset": "production"
   },
   "plugins": [
     "@sanity/base",
