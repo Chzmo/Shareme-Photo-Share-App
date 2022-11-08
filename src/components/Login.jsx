@@ -47,7 +47,7 @@ function Login() {
             userName:name,
             image: imageUrl,
         }
-
+        console.log(doc);
         client.createIfNotExists(doc)
         .then(() => {
                 client.fetch(
