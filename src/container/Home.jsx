@@ -10,21 +10,21 @@ import logo from '../assets/logo.png';
 
 import {userQuery} from '../utils/data'
 
-function Home() {
+const Home = () => {
   const [toggleSidebar, setToggleSidebar] = useState(false);
   const [user, setUser] = useState(null)
   const UserInfo = localStorage.getItem('user') !== 'undefined' ? JSON.parse(localStorage.getItem('user')) : localStorage.clear();
+  
   
   useEffect(() => {
     const query = userQuery(UserInfo?.googleId);
     client.fetch(query)
       .then((data)=>{
         setUser(data[0]);
-        console.log(data);
       })
   }, []);
   
-  
+  console.log(user);
   return (
     <div className='flex bg-gray-50 md:flex-row flex-col h-screen transition-height duration-75 ease-out'>
       <div className="hidden md:flex hscreen flex-initial">
@@ -35,11 +35,11 @@ function Home() {
         <Link to="/">
           <img src={logo} alt="logo" className="w-28"/>
         </Link>
-
-        {//<Link to={`user-profile/${user?._id}`}>
-          //<img src={logo} alt="logo" className="w-28"/>
-        //</Link>
-      }
+        
+        <a href={ `user-profile/` + user?._id }>
+        
+        </a>
+      
 
       </div>
     </div>
