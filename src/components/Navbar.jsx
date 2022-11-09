@@ -2,6 +2,8 @@ import React, {useEffect} from 'react'
 import {Link, useNavigate} from 'react-router-dom'
 import {IoMdAdd, IoMdSearch} from 'react-icons/io'
 
+import avatar from  '../assets/logo-placeholder.png'
+
 function Navbar({searchTerm, setSearchTerm, user}) {
   const navigate = useNavigate();
 
@@ -20,6 +22,11 @@ function Navbar({searchTerm, setSearchTerm, user}) {
           className="p-2 w-full bg-white outline-none"
         />
         
+      </div>
+      <div className="flex gap-3">
+        <Link to={`user/profile/${user?._id}`} className="hidden md:block">
+          <img src={avatar} alt="user" className='w-14 h-12 rounded-lg' />
+        </Link>
       </div>
     </div>
   )
