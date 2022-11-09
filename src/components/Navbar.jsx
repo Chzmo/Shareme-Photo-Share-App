@@ -27,6 +27,9 @@ function Navbar({searchTerm, setSearchTerm, user}) {
         <Link to={`user/profile/${user?._id}`} className="hidden md:block">
           <img src={avatar} alt="user" className='w-14 h-12 rounded-lg' />
         </Link>
+        <Link to="create-pin" className="bg-black text-white rounded-lg w-12 h-12 md:w-14 md:h-12 flex justify-center items-center">
+          <IoMdAdd />
+        </Link>
       </div>
     </div>
   )
