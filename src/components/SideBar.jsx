@@ -4,15 +4,16 @@ import {RiHomeFill} from 'react-icons/ri';
 import {IoIoArrowforward} from 'react-icons/io';
 
 import logo from '../assets/logo.png'
+import avatar from  '../assets/logo-placeholder.png'
 
 const isNotActiveStyle = 'flex items-center px-5 gap-3 text-gray-500 hover:text-black transition-all duration-200 ease-in-out capitalize'
-const isActiveStyle = 'flex items-center px-5 gap-3 font-extrabold boarder-r-2 boarder-black transition-all duration-200 ease-in-out capitalize'
+const isActiveStyle = 'flex items-center px-5 gap-3 font-extrabord border-r-2 border-black transition-all duration-200 ease-in-out capitalize'
 
 const catergories = [
   {name: 'Animals'},
   {name: 'wallpapers'},
   {name: 'Photography'},
-  {name: 'Gaminh'},
+  {name: 'Gaming'},
   {name: 'Coding'},
 ]
 
@@ -50,10 +51,19 @@ const SideBar = ({user, closedToggle}) =>{
             >
               {catergory.name}
             </NavLink>
-            
           ))}
         </div>
       </div>
+      {user && (
+        <Link
+          to={`/user-profile/${user._id}`}
+          className="flex my-5 mb-3 gap-2 p-2 items-center bg-white rounded-lg shadow-lg mx-3"
+          onClick={handleCloseSidebar}
+        >
+          <img src={avatar} alt="avatar" className='w-10 h-10 rounded-full'/>
+          <p>{user.userName}</p>
+        </Link>
+      )}
     </div>
   )
 }
