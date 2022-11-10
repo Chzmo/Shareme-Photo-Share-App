@@ -14,7 +14,7 @@ function Spinner({message}) {
         wrapperClass=""
         visible={true}
       />
-      <p className='text-lg text-center px--2'>
+      <p className='text-lg text-center px-2'>
         {message}
       </p>
     </div>
