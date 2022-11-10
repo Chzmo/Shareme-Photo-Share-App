@@ -10,13 +10,13 @@ import logo from '../assets/logo.png';
 import avatar from  '../assets/logo-placeholder.png'
 
 import {userQuery} from '../utils/data'
+import { fetchUser } from '../utils/fetchUser';
 
 const Home = () => {
   const [toggleSidebar, setToggleSidebar] = useState(false);
   const [user, setUser] = useState(null);
   const scrollRef = useRef(null);
-  const UserInfo = localStorage.getItem('user') !== 'undefined' ? JSON.parse(localStorage.getItem('user')) : localStorage.clear();
-  
+  const UserInfo = fetchUser();
   
   useEffect(() => {
     const query = userQuery(UserInfo?.googleId);

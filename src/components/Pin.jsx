@@ -5,12 +5,17 @@ import {MdDownloadForOffline} from 'react-icons/md'
 import {AiTwotoneDelete} from 'react-icons/ai'
 import {BsFillArrowRightCircleFill} from 'react-icons/bs'
 
-import { urlFor } from '../client'
+import { urlFor } from '../client' 
+import { fetchUser } from '../utils/fetchUser'
 
-function Pin({pin:{postedBy, image, _id, destination}}) {
+function Pin({pin:{postedBy, image, _id, destination, save}}) {
 const [postHoverd, setPostHoverd] = useState(false);
 const [savingPost, setSavingPost] = useState(false);
 const navigate = useNavigate();
+const user = fetchUser();
+
+const alreadySaved = save?.filter((item) => item.postedBy._id === user._id.googleId);
+
   return (
     <div className='m-2'>
       <div
@@ -31,11 +36,20 @@ const navigate = useNavigate();
                   href={`${image?.asset?.url}?dl=`}
                   download
                   onClick={(e)=> e.stopPropagation()}
-                  className="bg-white w-9 h-9 rounded-full flex items-center justify-center text-dark text-xl opacity-75"
+                  className="bg-white w-9 h-9 rounded-full flex items-center justify-center text-dark text-xl opacity-75 hover:opacity-100 hover:shadow-md hover:outline-none"
                 >
                   <MdDownloadForOffline />
                 </a>
               </div>
+              {alreadySaved?.lenth !== 0 ? (
+                <button>
+                  Saved
+                </button>):(
+                  <button>
+                    Save
+                </button>
+                )
+              }
             </div>
           </div>
         )}
