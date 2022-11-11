@@ -13,7 +13,6 @@ const [postHoverd, setPostHoverd] = useState(false);
 const [savingPost, setSavingPost] = useState(false);
 const navigate = useNavigate();
 const user = fetchUser();
-console.log(user)
 
 const alreadySaved = !!(save?.filter((item) => item.postedBy._id === user.googleId))?.length;
 const savePin = (id) =>{

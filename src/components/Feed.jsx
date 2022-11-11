@@ -8,7 +8,6 @@ import MasonryLayout from './MasonryLayout';
 import Search from './Search';
 import Spinner from './Spinner'
 
-
 function Feed() {
   const [loading, setLoading] = useState(false);
   const [pins, setPins] = useState(null);
