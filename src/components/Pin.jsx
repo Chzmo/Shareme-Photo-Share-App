@@ -14,7 +14,7 @@ const [savingPost, setSavingPost] = useState(false);
 const navigate = useNavigate();
 const user = fetchUser();
 
-const alreadySaved = save?.filter((item) => item.postedBy._id === user._id.googleId);
+const alreadySaved = !!(save?.filter((item) => item.postedBy._id === user._id.googleId))?.length;
 
   return (
     <div className='m-2'>
@@ -41,11 +41,11 @@ const alreadySaved = save?.filter((item) => item.postedBy._id === user._id.googl
                   <MdDownloadForOffline />
                 </a>
               </div>
-              {alreadySaved?.lenth !== 0 ? (
-                <button>
+              {alreadySaved ? (
+                <button type="button" className='bg-red-500'>
                   Saved
                 </button>):(
-                  <button>
+                  <button type="button" className='bg-red-500 opacity-70 hover:opacity-100 text-white font-bold px-5 py-1 rounded-3xl hover:shadow-md outline-none'>
                     Save
                 </button>
                 )
