@@ -1,21 +1,41 @@
 import React, { useState }from 'react'
 import {Link, Navigate, useNavigate} from 'react-router-dom'
-import { v4 as uuidv4 } from 'react-router-dom'
+import { v4 as uuidv4 } from 'uuid';
 import {MdDownloadForOffline} from 'react-icons/md'
 import {AiTwotoneDelete} from 'react-icons/ai'
 import {BsFillArrowRightCircleFill} from 'react-icons/bs'
 
-import { urlFor } from '../client' 
+import { client, urlFor } from '../client' 
 import { fetchUser } from '../utils/fetchUser'
 
-function Pin({pin:{postedBy, image, _id, destination, save}}) {
+const Pin = ({pin:{postedBy, image, _id, destination, save}}) => {
 const [postHoverd, setPostHoverd] = useState(false);
 const [savingPost, setSavingPost] = useState(false);
 const navigate = useNavigate();
 const user = fetchUser();
 
 const alreadySaved = !!(save?.filter((item) => item.postedBy._id === user._id.googleId))?.length;
+const savePin = (id) =>{
+  setSavingPost(true);
 
+  client
+    .patch(id)
+    .setIfMissing({save: []})
+    .insert('after', 'save[-1]', [{
+      _key:uuidv4(),
+      userId:user.googleId,
+      postedBy:{
+        _type:'postedBy',
+        _ref:user.googleId
+      }
+    }])
+    .commit()
+    .then(()=>{
+      window.location.reload();
+      setSavingPost(false)
+    })
+
+}
   return (
     <div className='m-2'>
       <div
@@ -41,11 +61,16 @@ const alreadySaved = !!(save?.filter((item) => item.postedBy._id === user._id.go
                   <MdDownloadForOffline />
                 </a>
               </div>
-              {alreadySaved ? (
+              {alreadySaved? (
                 <button type="button" className='bg-red-500'>
-                  Saved
+                  {save?.length} Saved
                 </button>):(
-                  <button type="button" className='bg-red-500 opacity-70 hover:opacity-100 text-white font-bold px-5 py-1 rounded-3xl hover:shadow-md outline-none'>
+                  <button 
+                    onClick={(e)=>{
+                      e.stopPropagation()
+                      savePin(_id)
+                    }}
+                    type="button" className='bg-red-500 opacity-70 hover:opacity-100 text-white font-bold px-5 py-1 rounded-3xl hover:shadow-md outline-none'>
                     Save
                 </button>
                 )
