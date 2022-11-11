@@ -13,8 +13,9 @@ const [postHoverd, setPostHoverd] = useState(false);
 const [savingPost, setSavingPost] = useState(false);
 const navigate = useNavigate();
 const user = fetchUser();
+console.log(user)
 
-const alreadySaved = !!(save?.filter((item) => item.postedBy._id === user._id.googleId))?.length;
+const alreadySaved = !!(save?.filter((item) => item.postedBy._id === user.googleId))?.length;
 const savePin = (id) =>{
   setSavingPost(true);
 
@@ -23,7 +24,7 @@ const savePin = (id) =>{
     .setIfMissing({save: []})
     .insert('after', 'save[-1]', [{
       _key:uuidv4(),
-      userId:user.googleId,
+      userId:user?.googleId,
       postedBy:{
         _type:'postedBy',
         _ref:user.googleId
