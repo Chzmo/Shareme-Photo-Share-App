@@ -56,14 +56,17 @@ const savePin = (id) =>{
                 <a 
                   href={`${image?.asset?.url}?dl=`}
                   download
-                  onClick={(e)=> e.stopPropagation()}
+                  onClick={
+                    (e)=> {e.stopPropagation()}
+                  }
                   className="bg-white w-9 h-9 rounded-full flex items-center justify-center text-dark text-xl opacity-75 hover:opacity-100 hover:shadow-md hover:outline-none"
                 >
                   <MdDownloadForOffline />
                 </a>
               </div>
               {alreadySaved? (
-                <button type="button" className='bg-red-500'>
+                <button 
+                  type="button" className="bg-red-500 opacity-70 hover:opacity-100 text-white font-bold px-5 py-1 rounded-3xl hover:shadow-md outline-none">
                   {save?.length} Saved
                 </button>):(
                   <button 
