@@ -50,8 +50,8 @@ function CreatePin() {
       )}
       <div className="flex flex-col justify-center items-center bg-white p-3 w-full lg:p-5 lg:w-4/5 lg:flex-row">
         <div className="bg-secondaryColor p-3 flex flex-0 7 w-full">
-          <div className="flex justify-center flex-col border-dotted border-gray-300 p-3 w-full h-420">
-            {loading && <Spinner message="Uploading image..."/>}
+          <div className="flex justify-center flex-col border-dotted border-gray-300 p-3 w-full h-420 bg-red">
+            {loading && <Spinner message="Uploading image please wait..."/>}
             {wrongImageType && <p>Wrong Image Type</p>}
             {!imageAsset ? (
               <label >
@@ -74,15 +74,15 @@ function CreatePin() {
                 />
               </label>
             ):(
-              <div className="relative h-full">
+              <div className="relative h-full ">
                 <img 
                   src={imageAsset?.url}
                   alt="uploaded-pic" 
-                  className='h-full items-center flex'
+                  className='h-full'
                  />
                  <button
                   type='button'
-                  className='absolute b-3 r-3 p-3 bg-white cursor-pointer outline-none hover:shadow-md transition-all duration-500 ease-in-out'
+                  className='absolute bottom-3 right-3 p-3 rounded-full bg-white text-xl cursor-pointer outline-none hover:shadow-md transition-all duration-500 ease-in-out'
                   onClick={() => setImageAsset(null)}
                  >
                   <MdDelete />
