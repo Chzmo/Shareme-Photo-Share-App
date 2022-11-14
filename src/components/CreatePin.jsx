@@ -21,8 +21,9 @@ function CreatePin() {
   const navigate = useNavigate();
 
   const uploadImage = (e) => {
-    const {type, name} = e.target.files[0];
-    if(type === 'image/png' || type === 'image/svg' || type === 'image/jpg' || type === 'image/gif' || type === 'image/tiff'){
+    const {type} = e.target.files[0];
+   
+    if(type === 'image/png' || type === 'image/svg' || type === 'image/jpeg' || type === 'image/gif' || type === 'image/tiff'){
       setWrongImageType(false);
       setLoading(true);
 
@@ -50,20 +51,20 @@ function CreatePin() {
       <div className="flex flex-col justify-center items-center bg-white p-3 w-full lg:p-5 lg:w-4/5 lg:flex-row">
         <div className="bg-secondaryColor p-3 flex flex-0 7 w-full">
           <div className="flex justify-center flex-col border-dotted border-gray-300 p-3 w-full h-420">
-            {loading && <Spinner messege=""/>}
+            {loading && <Spinner message="Uploading image..."/>}
             {wrongImageType && <p>Wrong Image Type</p>}
             {!imageAsset ? (
-              <label htmlFor="">
+              <label >
                 <div className='flex flex-col items-center h-full'>
-                <div className="flex flex-col justify-center items-center">
-                  <p className="font-bold text-2xl">
-                    <AiOutlineCloudUpload />
+                  <div className="flex flex-col justify-center items-center">
+                    <p className="font-bold text-2xl">
+                      <AiOutlineCloudUpload />
+                    </p>
+                    <p className="text-lg">Click to upload</p>
+                  </div>
+                  <p className="mt-32 text-gray-400">
+                    Use high quality JPG, SVG, GIF or TIFF less than 20 MB
                   </p>
-                  <p className="text-lg">Click to upload</p>
-                </div>
-                <p className="mt-32 text-gray-400">
-                  Use high quality JPG, SVG, GIF or TIFF less than 20 MB
-                </p>
                 </div>
                 <input 
                   type="file" 
@@ -77,12 +78,14 @@ function CreatePin() {
                 <img 
                   src={imageAsset?.url}
                   alt="uploaded-pic" 
-                  className='h-full w-full '
+                  className='h-full items-center flex'
                  />
                  <button
-                  type='butoon'
+                  type='button'
+                  className='absolute b-3 r-3 p-3 bg-white cursor-pointer outline-none hover:shadow-md transition-all duration-500 ease-in-out'
+                  onClick={() => setImageAsset(null)}
                  >
-                  
+                  <MdDelete />
                  </button>
               </div>
             )}
