@@ -6,6 +6,7 @@ import {useNavigate} from 'react-router-dom';
 import { client } from '../client';
 import Spinner from './Spinner'
 import { categories } from '../utils/data'
+import NoWorkResult from 'postcss/lib/no-work-result';
 
 function CreatePin() {
   const [tittle, setTittle] = useState('');
@@ -20,9 +21,22 @@ function CreatePin() {
   const navigate = useNavigate();
 
   const uploadImage = (e) => {
-    const {type} = e.target.files[0];
+    const {type, name} = e.target.files[0];
     if(type === 'image/png' || type === 'image/svg' || type === 'image/jpg' || type === 'image/gif' || type === 'image/tiff'){
-      
+      setWrongImageType(false);
+      setLoading(true);
+
+      client.assets
+        .upload('image', e.target.files[0], {contentType:type, filename:Date.now()})
+        .then((document) => {
+          setImageAsset(document);
+          setLoading(false);
+        })
+        .catch((error) =>{
+          console.log('Image upload error', error)
+        })
+    }else{
+      setWrongImageType(true);
     }
   }
 
@@ -59,7 +73,18 @@ function CreatePin() {
                 />
               </label>
             ):(
-              <p>somwdfdf</p>
+              <div className="relative h-full">
+                <img 
+                  src={imageAsset?.url}
+                  alt="uploaded-pic" 
+                  className='h-full w-full '
+                 />
+                 <button
+                  type='butoon'
+                 >
+                  
+                 </button>
+              </div>
             )}
           </div>
         </div>
