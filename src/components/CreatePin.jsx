@@ -19,8 +19,11 @@ function CreatePin() {
   
   const navigate = useNavigate();
 
-  const uploadImage = () =>{
-    
+  const uploadImage = (e) => {
+    const {type} = e.target.files[0];
+    if(type === 'image/png' || type === 'image/svg' || type === 'image/jpg' || type === 'image/gif' || type === 'image/tiff'){
+      
+    }
   }
 
   return (
