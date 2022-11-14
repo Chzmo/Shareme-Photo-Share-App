@@ -98,7 +98,7 @@ function CreatePin() {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder="Add your tittle here"
-            className='mt-2 outline-none font-bold border-t-2 border-b-2 border-gray-200 p-2'
+            className='mt-2 outline-none font-bold border-t-2 border-r-2 border-l-2  border-b-2 border-gray-200 p-2'
           />
         </div>
       </div>
