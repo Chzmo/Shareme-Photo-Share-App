@@ -50,7 +50,7 @@ function CreatePin() {
       )}
       <div className="flex flex-col justify-center items-center bg-white p-3 w-full lg:p-5 lg:w-4/5 lg:flex-row">
         <div className="bg-secondaryColor p-3 flex flex-0 7 w-full">
-          <div className="flex justify-center flex-col border-dotted border-gray-300 p-3 w-full h-420 bg-red">
+          <div className="flex justify-center items-center flex-col border-dotted border-gray-300 p-3 w-full h-420 bg-red">
             {loading && <Spinner message="Uploading image please wait..."/>}
             {wrongImageType && <p>Wrong Image Type</p>}
             {!imageAsset ? (
