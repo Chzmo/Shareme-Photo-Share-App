@@ -1,5 +1,5 @@
 import React, { useState }from 'react'
-import {Link, Navigate, useNavigate} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import { v4 as uuidv4 } from 'uuid';
 import {MdDownloadForOffline} from 'react-icons/md'
 import {AiTwotoneDelete} from 'react-icons/ai'
@@ -7,6 +7,7 @@ import {BsFillArrowRightCircleFill} from 'react-icons/bs'
 
 import { client, urlFor } from '../client' 
 import { fetchUser } from '../utils/fetchUser'
+import avatar from '../assets/logo-placeholder.png'
 
 const Pin = ({pin:{postedBy, image, _id, destination, save}}) => {
 const [postHoverd, setPostHoverd] = useState(false);
@@ -33,7 +34,7 @@ const savePin = (id) =>{
     })
   }
 }
-
+console.log(user);
 const deletePin = (id) =>{
   client
     .delete(id)
@@ -117,6 +118,17 @@ const deletePin = (id) =>{
           </div>
         )}
       </div>
+      <Link
+        to={`user-profile/${user?.googleId}`}
+        className="flex gap-2 mt-2 items-center"
+      >
+        <img 
+          className='w-10 h-10 rounded-full object-cover'
+          src={avatar}
+          alt={user.userName}
+        />
+        <p className="font-semibold capitalize">{postedBy?.userName}</p>
+      </Link>
     </div>
   )
 }
