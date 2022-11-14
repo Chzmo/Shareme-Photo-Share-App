@@ -33,6 +33,14 @@ const savePin = (id) =>{
     })
   }
 }
+
+const deletePin = (id) =>{
+  client
+    .delete(id)
+    .then(()=>{
+      window.location.reload();
+    })
+}
   return (
     <div className='m-2'>
       <div
@@ -91,7 +99,7 @@ const savePin = (id) =>{
                   
                 >
                 <BsFillArrowRightCircleFill />
-                {destination.length < 20 ?  destination: destination.slice(0, 17) + '...'}
+                {destination.length < 15 ?  destination: destination.slice(0, 10) + '...'}
                 </a>
               )}
               {postedBy?._id === user?.googleId && (
@@ -100,9 +108,9 @@ const savePin = (id) =>{
                     e.stopPropagation()
                     deletePin(_id)
                   }}
-                  type="button" className='bg-red-500 opacity-70 hover:opacity-100 text-white font-bold px-5 py-1 rounded-3xl hover:shadow-md outline-none'
+                  type="button" className='bg-white p-2 opacity-70 hover:opacity-100 text-red font-bold rounded-3xl hover:shadow-md outline-none'
                 >
-                  Delete
+                  <AiTwotoneDelete />
               </button>
               )}
             </div>

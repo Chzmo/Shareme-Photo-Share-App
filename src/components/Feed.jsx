@@ -21,6 +21,7 @@ function Feed() {
         .then((data)=> {
           setPins(data)
           setLoading(false)
+          console.log(pins)
         }) 
     }else{
       client.fetch(feedQuery)
