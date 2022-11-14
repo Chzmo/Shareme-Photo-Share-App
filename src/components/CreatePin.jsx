@@ -9,7 +9,7 @@ import { categories } from '../utils/data'
 import NoWorkResult from 'postcss/lib/no-work-result';
 
 function CreatePin() {
-  const [tittle, setTittle] = useState('');
+  const [title, setTitle] = useState('');
   const [about, setAbout] = useState('');
   const [destinatio, setDestinatio] = useState('');
   const [loading, setLoading] = useState(false);
@@ -78,7 +78,7 @@ function CreatePin() {
                 <img 
                   src={imageAsset?.url}
                   alt="uploaded-pic" 
-                  className='h-full'
+                  className='h-full w-full'
                  />
                  <button
                   type='button'
@@ -90,6 +90,16 @@ function CreatePin() {
               </div>
             )}
           </div>
+        </div>
+
+        <div className='flex flex-1 flex-col gap-6 lg:pl-5 w-full'>
+          <input 
+            type="text" 
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            placeholder="Add your tittle here"
+            className='mt-2 outline-none font-bold border-t-2 border-b-2 border-gray-200 p-2'
+          />
         </div>
       </div>
     </div>
