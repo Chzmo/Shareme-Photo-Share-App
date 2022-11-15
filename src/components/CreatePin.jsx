@@ -43,6 +43,9 @@ function CreatePin() {
     }
   }
 
+  const savePin = () =>{
+
+  }
   return (
     <div className="flex flex-col justify-center items-center mt-5 lg:h-4/5">
       {fields && (
@@ -94,7 +97,7 @@ function CreatePin() {
           </div>
         </div>
 
-        <div className='flex flex-1 flex-col gap-6 lg:pl-5 w-full'>
+        <div className='flex flex-1 flex-col gap-6 w-full'>
           <input 
             type="text" 
             value={title}
@@ -119,6 +122,40 @@ function CreatePin() {
             placeholder="What is your pin about"
             className='mt-2 w-full outline-none font-bold border-t-2 border-r-2 border-l-2  border-b-2 border-gray-200 p-2'
           />
+           <input 
+            type="text" 
+            value={destination}
+            onChange={(e) => setDestination(e.target.value)}
+            placeholder="Add a destination eg: https://chzmo.com"
+            className='mt-2 w-full outline-none font-bold border-t-2 border-r-2 border-l-2  border-b-2 border-gray-200 p-2'
+          />
+          <div className='flex flex-col'>
+            <div>
+              <p className="mb-2 font-semibold text-lg sm text-xl">
+                Choose Pin Category
+              </p>
+              <select 
+                onChange={(e) => setCategory(e.target.value)}
+                className="outline-none w-4/5 text-base border-2 w-full cusor-pointer border-gray-200 p-2 rounded-md"
+              >
+                <option value="other" className='bg-white'>Select Category</option>
+                {categories.map((category) => (
+                  <option value={category.name} className="border-0 outline-none capitalize ">
+                    {category.name}
+                  </option>
+                ))}
+              </select>  
+            </div>
+            <div className="flex justify-end items-end mt-5">
+              <button
+                type='button'
+                onClick={savePin}
+                className="bg-red-500 text-white font-bold p-2 rounded-full w-28 outline-none"
+              >
+                Save Pin
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
