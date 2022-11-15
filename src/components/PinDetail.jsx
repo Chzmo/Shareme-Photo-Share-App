@@ -69,7 +69,7 @@ const addComment = () =>{
     <div className="flex flex-col m-auto bg-white" style={{maxWidth:'700px', borderRadius:'32px'}}>
       <div className="flex justify-center items-center ">
         <img
-          src={pinDetail?.image && urlFor(pinDetail.image).url()}
+          src={pinDetail?.image && urlFor(pinDetail?.image).url()}
           className="rounded-t-3xl rounded-b-lg"
           alt='user-post'
          
@@ -79,7 +79,7 @@ const addComment = () =>{
         <div className="flex items-center justify-between">
           <div className="flex gap-2 items-center">
             <a 
-              href={`${pinDetail.image?.asset?.url}?dl=`}
+              href={`${pinDetail?.image?.asset?.url}?dl=`}
               download
               onClick={
                 (e)=> {e.stopPropagation()}
@@ -119,13 +119,13 @@ const addComment = () =>{
           {pinDetail?.comments?.map((comment, i) => (
             <div className="flex gap-2 mt-5 items-center bg-white rounded-lg" key={i}>
               <img 
-                src={comment?.postedBy.image}
+                src={comment?.postedBy?.image}
                 alt="user-profile" 
                 className='w-10 h-10 rounded-full cursor-pointer'
               />
               <div className="flex flex-col">
                 <p className="font-bold">
-                  {comment.postedBy.userName}
+                  {comment?.postedBy?.userName}
                 </p>
               </div>
             </div>
