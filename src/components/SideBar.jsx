@@ -2,20 +2,14 @@ import React from 'react';
 import {NavLink, Link} from 'react-router-dom';
 import {RiHomeFill} from 'react-icons/ri';
 import {IoIoArrowforward} from 'react-icons/io';
+import { categories } from '../utils/data';
 
 import logo from '../assets/logo.png'
-import avatar from  '../assets/logo-placeholder.png'
 
 const isNotActiveStyle = 'flex items-center px-5 gap-3 text-gray-500 hover:text-black transition-all duration-200 ease-in-out capitalize'
 const isActiveStyle = 'flex items-center px-5 gap-3 font-extrabord border-r-2 border-black transition-all duration-200 ease-in-out capitalize'
 
-const catergories = [
-  {name: 'Animals'},
-  {name: 'wallpapers'},
-  {name: 'Photography'},
-  {name: 'Gaming'},
-  {name: 'Coding'},
-]
+const catergories = categories;
 
 const SideBar = ({user, closedToggle}) =>{
   const handleCloseSidebar = () => {
@@ -60,7 +54,7 @@ const SideBar = ({user, closedToggle}) =>{
           className="flex my-5 mb-3 gap-2 p-2 items-center bg-white rounded-lg shadow-lg mx-3"
           onClick={handleCloseSidebar}
         >
-          <img src={avatar} alt="avatar" className='w-10 h-10 rounded-full'/>
+          <img src={user.image} alt="user-profile" className='w-10 h-10 rounded-full'/>
           <p>{user.userName}</p>
         </Link>
       )}

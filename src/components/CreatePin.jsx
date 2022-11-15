@@ -100,17 +100,25 @@ function CreatePin() {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder="Add your tittle here"
-            className='mt-2 outline-none font-bold border-t-2 border-r-2 border-l-2  border-b-2 border-gray-200 p-2'
+            className='mt-2 w-full outline-none font-bold border-t-2 border-r-2 border-l-2  border-b-2 border-gray-200 p-2'
           />
           {user && (
             <div className="flex gap-2 items-center rounded-lg">
               <img 
-                src={user.imageUrl} 
-                alt="profile-pic"
-                className='rounded-full h-14' 
+                src={user?.imageUrl} 
+                alt="user-profile"
+                className='rounded-full h-10 w-10' 
                 />
+                <p className='font-bold'>{user?.name}</p>
             </div>
           )}
+          <input 
+            type="text" 
+            value={about}
+            onChange={(e) => setAbout(e.target.value)}
+            placeholder="What is your pin about"
+            className='mt-2 w-full outline-none font-bold border-t-2 border-r-2 border-l-2  border-b-2 border-gray-200 p-2'
+          />
         </div>
       </div>
     </div>
