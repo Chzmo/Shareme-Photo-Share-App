@@ -7,19 +7,21 @@ import { client } from '../client';
 import Spinner from './Spinner'
 import { categories } from '../utils/data'
 import NoWorkResult from 'postcss/lib/no-work-result';
+import {fetchUser} from  '../utils/fetchUser'
 
 function CreatePin() {
   const [title, setTitle] = useState('');
   const [about, setAbout] = useState('');
-  const [destinatio, setDestinatio] = useState('');
+  const [destination, setDestination] = useState('');
   const [loading, setLoading] = useState(false);
   const [fields, setFields] = useState(null);
-  const [category, setCategory] = useState(null)
-  const [imageAsset, setImageAsset] = useState(null)
-  const [wrongImageType, setWrongImageType] = useState(false)
-  
-  const navigate = useNavigate();
+  const [category, setCategory] = useState(null);
+  const [imageAsset, setImageAsset] = useState(null);
+  const [wrongImageType, setWrongImageType] = useState(false);
 
+  const user = fetchUser();
+  const navigate = useNavigate();
+  console.log(user);
   const uploadImage = (e) => {
     const {type} = e.target.files[0];
    
@@ -48,7 +50,7 @@ function CreatePin() {
           Please fill in all fields.
         </p>
       )}
-      <div className="flex flex-col justify-center items-center bg-white p-3 w-full lg:p-5 lg:w-4/5 lg:flex-row">
+      <div className="flex flex-col justify-center items-center bg-white p-3 w-full lg:p-5 lg:w-4/5 ">
         <div className="bg-secondaryColor p-3 flex flex-0 7 w-full">
           <div className="flex justify-center items-center flex-col border-dotted border-gray-300 p-3 w-full h-420 bg-red">
             {loading && <Spinner message="Uploading image please wait..."/>}
@@ -100,6 +102,15 @@ function CreatePin() {
             placeholder="Add your tittle here"
             className='mt-2 outline-none font-bold border-t-2 border-r-2 border-l-2  border-b-2 border-gray-200 p-2'
           />
+          {user && (
+            <div className="flex gap-2 items-center rounded-lg">
+              <img 
+                src={user.imageUrl} 
+                alt="profile-pic"
+                className='rounded-full h-14' 
+                />
+            </div>
+          )}
         </div>
       </div>
     </div>

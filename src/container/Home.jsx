@@ -7,7 +7,6 @@ import { Sidebar, UserProfile } from '../components/index';
 import Pins from './Pins';
 import { client } from '../client';
 import logo from '../assets/logo.png';
-import avatar from  '../assets/logo-placeholder.png'
 
 import {userQuery} from '../utils/data'
 import { fetchUser } from '../utils/fetchUser';
@@ -42,7 +41,7 @@ const Home = () => {
             <img src={logo} alt="logo" className="w-28"/>
           </Link>
           <Link to={`user-profile/${user?._id}`}>
-            <img src={avatar} alt="logo" className='w-28 h-28'/>
+            <img src={user?.image} alt="logo" className='w-28 h-28'/>
           </Link>
         </div>
         {toggleSidebar && (

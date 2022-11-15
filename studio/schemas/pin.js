@@ -44,7 +44,7 @@ export default {
             type: 'postedBy',
         },
         {
-            name:'ssaveace',
+            name:'save',
             title: 'Save',
             type: 'array',
             of:[{type: 'save'}]

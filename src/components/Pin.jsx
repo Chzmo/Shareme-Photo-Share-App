@@ -7,7 +7,6 @@ import {BsFillArrowRightCircleFill} from 'react-icons/bs'
 
 import { client, urlFor } from '../client' 
 import { fetchUser } from '../utils/fetchUser'
-import avatar from '../assets/logo-placeholder.png'
 
 const Pin = ({pin:{postedBy, image, _id, destination, save}}) => {
 const [postHoverd, setPostHoverd] = useState(false);
@@ -119,12 +118,12 @@ const deletePin = (id) =>{
         )}
       </div>
       <Link
-        to={`user-profile/${user?.googleId}`}
+        to={`user-profile/${postedBy?._id}`}
         className="flex gap-2 mt-2 items-center"
       >
         <img 
           className='w-10 h-10 rounded-full object-cover'
-          src={avatar}
+          src={postedBy.image}
           alt={user.userName}
         />
         <p className="font-semibold capitalize">{postedBy?.userName}</p>
