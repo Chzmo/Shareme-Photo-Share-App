@@ -6,7 +6,6 @@ import {useNavigate} from 'react-router-dom';
 import { client } from '../client';
 import Spinner from './Spinner'
 import { categories } from '../utils/data'
-import NoWorkResult from 'postcss/lib/no-work-result';
 import {fetchUser} from  '../utils/fetchUser'
 
 function CreatePin() {
@@ -21,7 +20,7 @@ function CreatePin() {
 
   const user = fetchUser();
   const navigate = useNavigate();
-  console.log(user);
+  
   const uploadImage = (e) => {
     const {type} = e.target.files[0];
    
@@ -44,7 +43,34 @@ function CreatePin() {
   }
 
   const savePin = () =>{
+    if(title && about && destination && imageAsset?._id && category){
+      const doc = {
+        _type: 'pin',
+        title,
+        about,
+        destination,
+        image:{
+          _type: 'image',
+          asset: {
+            _type: 'reference',
+            _ref: imageAsset?._id,
+          }
+        },
+        userId: user?._id,
+        postedBy:{
+          _type:'postedBy',
+          _ref:user?.googleId,
+        }
+      }
 
+      client.create(doc)
+        .then(() => {
+          navigate('/')
+        })
+    }else{
+      setFields(true);
+      setTimeout(() => setFields(false), 2000)
+    }
   }
   return (
     <div className="flex flex-col justify-center items-center mt-5 lg:h-4/5">
@@ -105,29 +131,19 @@ function CreatePin() {
             placeholder="Add your tittle here"
             className='mt-2 w-full outline-none font-bold border-t-2 border-r-2 border-l-2  border-b-2 border-gray-200 p-2'
           />
-          {user && (
-            <div className="flex gap-2 items-center rounded-lg">
-              <img 
-                src={user?.imageUrl} 
-                alt="user-profile"
-                className='rounded-full h-10 w-10' 
-                />
-                <p className='font-bold'>{user?.name}</p>
-            </div>
-          )}
           <input 
             type="text" 
             value={about}
             onChange={(e) => setAbout(e.target.value)}
             placeholder="What is your pin about"
-            className='mt-2 w-full outline-none font-bold border-t-2 border-r-2 border-l-2  border-b-2 border-gray-200 p-2'
+            className=' w-full outline-none font-bold border-t-2 border-r-2 border-l-2  border-b-2 border-gray-200 p-2'
           />
            <input 
             type="text" 
             value={destination}
             onChange={(e) => setDestination(e.target.value)}
             placeholder="Add a destination eg: https://chzmo.com"
-            className='mt-2 w-full outline-none font-bold border-t-2 border-r-2 border-l-2  border-b-2 border-gray-200 p-2'
+            className='w-full outline-none font-bold border-t-2 border-r-2 border-l-2  border-b-2 border-gray-200 p-2'
           />
           <div className='flex flex-col'>
             <div>
@@ -146,7 +162,17 @@ function CreatePin() {
                 ))}
               </select>  
             </div>
-            <div className="flex justify-end items-end mt-5">
+            <div className="flex justify-between items-start mt-5">
+            {user && (
+              <div className="flex gap-2 items-center rounded-lg">
+                <img 
+                  src={user?.imageUrl} 
+                  alt="user-profile"
+                  className='rounded-full h-10 w-10' 
+                  />
+                  <p className='font-bold'>{user?.name}</p>
+              </div>
+            )}
               <button
                 type='button'
                 onClick={savePin}

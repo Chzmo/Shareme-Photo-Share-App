@@ -123,8 +123,8 @@ const deletePin = (id) =>{
       >
         <img 
           className='w-10 h-10 rounded-full object-cover'
-          src={postedBy.image}
-          alt={user.userName}
+          src={postedBy?.image}
+          alt={user?.userName}
         />
         <p className="font-semibold capitalize">{postedBy?.userName}</p>
       </Link>
