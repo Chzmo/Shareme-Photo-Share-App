@@ -2,12 +2,14 @@ import React, {useState, useEffect} from 'react'
 import {MdDownloadForOffline} from 'react-icons/md'
 import {Link, useParams} from 'react-router-dom'
 import {v4 as uuidv4} from 'uuid'
+import { data } from 'autoprefixer'
 
+import {fetchUser} from '../utils/fetchUser'
 import {client, urlFor} from '../client'
 import MansonryLayout from './MasonryLayout'
 import {pinDetailMorePinQuery,  pinDetailQuery} from '../utils/data'
 import Spinner from './Spinner'
-import { data } from 'autoprefixer'
+
 
 function PinDetail() {
   const [pins, setPins] = useState(null)
@@ -15,7 +17,32 @@ function PinDetail() {
   const [comment, setComment] = useState('')
   const [addingComment, setAddingComment] = useState(false)
   const {pinId} = useParams();
+  const user = fetchUser();
   
+const addComment = () =>{
+  if(comment){
+    setAddingComment(true);
+
+    client
+      .patch(pinId)
+      .setIfMissing({comments: []})
+      .insert('after', 'comment[-1]',[{
+        comment,
+        _key:uuidv4(),
+        postedBy:{
+          _type:'postedBy',
+          _ref:user._id
+        }
+      }])
+      .commit()
+      .then(() => {
+        fetchPinDetails();
+        setComment('');
+        setAddingComment(false)
+      })
+  }
+}
+
   const fetchPinDetails = () =>{
     let query = pinDetailQuery(pinId);
 
@@ -36,7 +63,6 @@ function PinDetail() {
   useEffect(()=>{
     fetchPinDetails();
   },[pinId])
-  console.log(pinDetail)
   if(!pinDetail) return <Spinner message="Loading pin"/>
 
   return (
@@ -108,20 +134,28 @@ function PinDetail() {
         <div className="flex flex-wrap mt-6 gap-3">
         <Link
           to={`user-profile/${pinDetail.postedBy?._id}`}
-          className="flex gap-2 mt-5 items-center bg-white rounded-lg"
+          
         >
           <img 
-            className='w-10 h-10 rounded-full object-cover'
+            className='w-10 h-10 rounded-full cursor-pointer'
             src={pinDetail.postedBy?.image}
             alt="user-profile"
           />
         </Link>
-        <textarea 
-          className='flex-1 boder-gray-100 outline-none border-2 p-2 rounded-2xl focus:border-gray-300'
+        <input 
+          type='text'
+          className='flex-1 boder-gray-100 outline-none border-2 p-2 rounded-lg focus:border-gray-300'
           placeholder='Add a comment'
           value={comment}
           onChange={(e)=> setComment(e.target.value)}
         />
+        <button
+          type='button'
+          className='bg-red-500 text-white rounded-full px-6 py-2 font-semibold text-base outline-none'
+          onClick={addComment}
+        >
+          {addingComment ? 'Posting...': 'Post'}
+        </button>
         </div>
       </div>
     </div>
