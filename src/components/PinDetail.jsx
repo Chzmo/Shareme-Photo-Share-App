@@ -36,7 +36,7 @@ function PinDetail() {
   useEffect(()=>{
     fetchPinDetails();
   },[pinId])
-
+  console.log(pinDetail)
   if(!pinDetail) return <Spinner message="Loading pin"/>
 
   return (
@@ -70,6 +70,58 @@ function PinDetail() {
           >
             {pinDetail.destination} 
           </a>
+        </div>
+        <div>
+          <h1 className="text-4xl font-bold break-words mt-3">
+            {pinDetail?.title}
+          </h1>
+          <p className='mt-3'>{pinDetail.about}</p>
+        </div>
+        <Link
+          to={`user-profile/${pinDetail.postedBy?._id}`}
+          className="flex gap-2 mt-5 items-center bg-white rounded-lg"
+        >
+          <img 
+            className='w-10 h-10 rounded-full object-cover'
+            src={pinDetail.postedBy?.image}
+            alt="user-profile"
+          />
+          <p className="font-semibold capitalize">{pinDetail.postedBy?.userName}</p>
+        </Link>
+        <h2 className='mt-5 text-2xl'>Comments</h2>
+        <div className="max-h-370 overflow-y-auto">
+          {pinDetail?.comments?.map((comment, i) => (
+            <div className="flex gap-2 mt-5 items-center bg-white rounded-lg" key={i}>
+              <img 
+                src={comment?.postedBy.image}
+                alt="user-profile" 
+                className='w-10 h-10 rounded-full cursor-pointer'
+              />
+              <div className="flex flex-col">
+                <p className="font-bold">
+                  {comment.postedBy.userName}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="flex flex-wrap mt-6 gap-3">
+        <Link
+          to={`user-profile/${pinDetail.postedBy?._id}`}
+          className="flex gap-2 mt-5 items-center bg-white rounded-lg"
+        >
+          <img 
+            className='w-10 h-10 rounded-full object-cover'
+            src={pinDetail.postedBy?.image}
+            alt="user-profile"
+          />
+        </Link>
+        <textarea 
+          className='flex-1 boder-gray-100 outline-none border-2 p-2 rounded-2xl focus:border-gray-300'
+          placeholder='Add a comment'
+          value={comment}
+          onChange={(e)=> setComment(e.target.value)}
+        />
         </div>
       </div>
     </div>

@@ -33,7 +33,6 @@ const savePin = (id) =>{
     })
   }
 }
-console.log(user);
 const deletePin = (id) =>{
   client
     .delete(id)
