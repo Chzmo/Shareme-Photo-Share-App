@@ -8,7 +8,7 @@ import {client} from '../client'
 import MasonryLayout from './MasonryLayout'
 import Spinner from './Spinner'
 
-const randomImage = "https://source.unsplash.com/1600x900/?nature,photography,technology/coding"
+const randomImage = "https://source.unsplash.com/1600x900/?nature,photography,technology/programming"
 
 function UserProfile() {
   const [user, setUser] = useState(null);
