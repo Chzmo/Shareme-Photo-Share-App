@@ -48,6 +48,7 @@ function CreatePin() {
         _type: 'pin',
         title,
         about,
+        category,
         destination,
         image:{
           _type: 'image',

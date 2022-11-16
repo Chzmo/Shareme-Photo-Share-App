@@ -50,11 +50,14 @@ const addComment = () =>{
       client.fetch(query)
         .then((data) => {
           setPinDetail(data[0])
-
+          console.log(data[0].category, data[0]._id);
           if(data[0]){
             query = pinDetailMorePinQuery(data[0]);
+            
             client.fetch(query)
-              .then((res)=> setPins(res));
+              .then(
+                (res)=> setPins(res))
+                .catch(console.error())
           }
         })
     }
@@ -68,7 +71,7 @@ const addComment = () =>{
 
   return (
     <>
-      <div className="flex flex-col m-auto bg-white" style={{maxWidth:'700px', borderRadius:'32px'}}>
+      <div className="flex  m-auto bg-white" style={{maxWidth:'700px', borderRadius:'32px'}}>
         <div className="flex justify-center items-center ">
           <img
             src={pinDetail?.image && urlFor(pinDetail?.image).url()}
