@@ -43,6 +43,11 @@ function UserProfile() {
               alt="user-profile"
               className='w-full mt-2 h-370 2xl:h-510 shadow-lg object-cover'
             />
+            <img 
+              src="https://lh3.googleusercontent.com/a/ALm5wu2rbkWsdWIawdJsa_qGBXbC0_s9a4yUSMcpKRWaNg=s96-c"
+              alt="user-profile"
+              className='rounded-full w-20 h-2 -mt-h-20 shadow-xl' 
+            />
           </div>
         </div>
       </div>

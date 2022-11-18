@@ -21,6 +21,7 @@ const Home = () => {
     const query = userQuery(UserInfo?.googleId);
     client.fetch(query)
       .then((data)=>{
+        console.log(data[0]);
         setUser(data[0]);
       })
   }, []);
