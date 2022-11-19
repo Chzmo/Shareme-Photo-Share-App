@@ -48,12 +48,12 @@ function UserProfile() {
             <img 
               src={randomImage}
               alt="user-profile"
-              className='w-full mt-2 h-370 2xl:h-510 shadow-lg object-cover'
+              className='w-full mt-2 h-370 2xl:h-510 shadow-lg object-cover '
             />
             <img 
               src="https://lh3.googleusercontent.com/a/ALm5wu2rbkWsdWIawdJsa_qGBXbC0_s9a4yUSMcpKRWaNg=s96-c"
               alt="user-profile"
-              className='rounded-full w-20 h-2 -mt-h-20 shadow-xl' 
+              className='rounded-full w-20 h-20 -mt-10 shadow-xl' 
             />
             <h1 className='font-bold text-3xl text-center mt-3'>
               {user?.userName}
