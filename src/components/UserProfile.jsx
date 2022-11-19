@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import {AiOutlineLogout} from 'react-icons/ai'
 import {useNavigate, useParams} from 'react-router-dom'
-import {GooglrLogout} from 'react-google-login'
+import {GoogleLogout, GooglrLogout} from 'react-google-login'
 
 import{userCreatedPinsQuery, userQuery, userSavedPinsQuery} from './../utils/data'
 import {client} from '../client'
@@ -18,6 +18,7 @@ function UserProfile() {
   
   const navigate = useNavigate();
   const {userId} = useParams();
+  const clientId = process.env.REACT_APP_GOOGLE_TOKEN;
 
   useEffect(()=>{
     const query = userQuery(userId);
@@ -33,6 +34,12 @@ function UserProfile() {
   if (!user){
     return <Spinner message={`Loading Profile...`} />
   }
+
+  const logout = () =>{
+    localStorage.clear()
+    navigate('/login');
+  }
+
   return (
     <div className="relative pb-2 h-2 justify-center items-center">
       <div className="flex flex-col pb-5">
@@ -48,6 +55,27 @@ function UserProfile() {
               alt="user-profile"
               className='rounded-full w-20 h-2 -mt-h-20 shadow-xl' 
             />
+            <h1 className='font-bold text-3xl text-center mt-3'>
+              {user?.userName}
+            </h1>
+            <div className='absolute top-0 z-1 right-0 p-2'>
+              {userId === user?._id && (
+                <GoogleLogout
+                  clientId = {clientId}
+                  render={(renderProps)=>(
+                      <button
+                          type='button'
+                          className='bg-white p-2 rounded-full cursor-pointer outline-none shadow-md'                         onClick={renderProps.onClick}
+                          disabled={renderProps.disabled}
+                          >
+                          <AiOutlineLogout color="red" fontSize={21} />
+                      </button>
+                  )}
+                  onLogoutSuccess={logout}
+                  cookiePolicy="single_host_origin"
+              />
+              )}
+            </div>
           </div>
         </div>
       </div>

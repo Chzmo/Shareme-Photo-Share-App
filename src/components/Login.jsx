@@ -20,20 +20,18 @@ function Login() {
     const responseGoogle = (response)=>{       
         localStorage.setItem('user', JSON.stringify(response.profileObj));
         const {name, googleId, imageUrl} = response.profileObj; 
-        console.log(googleId, name, imageUrl);
+       
         const doc = {
             _id: googleId,
             _type: 'user',
             userName:name,
             image: imageUrl,
         }
-        console.log(doc);
         client.createIfNotExists(doc)
         .then(() => {
                 client.fetch(
                     `*[_type == "user"]`
                 )
-                .then((data) => console.log(data))
                 navigate('/', {replace:true})
             })
         .catch(console.error);

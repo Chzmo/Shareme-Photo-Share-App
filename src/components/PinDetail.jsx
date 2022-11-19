@@ -50,7 +50,6 @@ const addComment = () =>{
       client.fetch(query)
         .then((data) => {
           setPinDetail(data[0])
-          console.log(data[0].category, data[0]._id);
           if(data[0]){
             query = pinDetailMorePinQuery(data[0]);
             
