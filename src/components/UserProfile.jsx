@@ -51,7 +51,7 @@ function UserProfile() {
               className='w-full mt-2 h-370 2xl:h-510 shadow-lg object-cover '
             />
             <img 
-              src="https://lh3.googleusercontent.com/a/ALm5wu2rbkWsdWIawdJsa_qGBXbC0_s9a4yUSMcpKRWaNg=s96-c"
+            src={user.image}
               alt="user-profile"
               className='rounded-full w-20 h-20 -mt-10 shadow-xl' 
             />
@@ -77,6 +77,7 @@ function UserProfile() {
               )}
             </div>
           </div>
+          <div className="tex-center mg-7"></div>
         </div>
       </div>
     </div>
