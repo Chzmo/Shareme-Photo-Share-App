@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import {AiOutlineLogout} from 'react-icons/ai'
 import {useNavigate, useParams} from 'react-router-dom'
-import {GoogleLogout} from 'react-google-login'
 
 import{userCreatedPinsQuery, userQuery, userSavedPinsQuery} from './../utils/data'
 import {client} from '../client'
@@ -80,7 +79,7 @@ function UserProfile() {
             <h1 className='font-bold text-3xl text-center mt-3'>
               {user?.userName}
             </h1>
-            <div className='absolute top-0 z-1 right-0 p-2'>
+            {/* <div className='absolute top-0 z-1 right-0 p-2'>
               {(userId === user?._id && userId !== null) && (
                 <GoogleLogout
                   clientId = {clientId}
@@ -97,7 +96,7 @@ function UserProfile() {
                   cookiePolicy="single_host_origin"
               />
               )}
-            </div>
+            </div> */}
           </div>
           <div className="text-center mg-7">
             <button
