@@ -57,7 +57,7 @@ function CreatePin() {
             _ref: imageAsset?._id,
           }
         },
-        userId: user?._id,
+        userId: user?.googleId,
         postedBy:{
           _type:'postedBy',
           _ref:user?.googleId,
@@ -179,7 +179,7 @@ function CreatePin() {
                 onClick={savePin}
                 className="bg-red-500 text-white font-bold p-2 rounded-full w-28 outline-none"
               >
-                Save Pin
+                Create Pin
               </button>
             </div>
           </div>

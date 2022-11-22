@@ -15,7 +15,7 @@ const notActiveBtnStyles = 'bg-primary mr-4 text-black font-bold p-2 rounded-ful
 function UserProfile() {
   const [user, setUser] = useState(null);
   const [pins, setPins] = useState(null);
-  const [text, setText] = useState('Created');
+  const [text, setText] = useState('created');
   const [activeBtn, setActiveBtn] = useState('created');
   
   const navigate = useNavigate();
@@ -27,8 +27,7 @@ function UserProfile() {
 
     client.fetch(query)
       .then((data) =>{
-        setUser(data[0]);
-        
+        setUser(data[0]); 
       })
 
   }, [userId])
@@ -62,6 +61,7 @@ function UserProfile() {
     navigate('/login');
   }
 
+  console.log(userId, user._id)
   return (
     <div className="relative pb-2 h-2 justify-center items-center">
       <div className="flex flex-col pb-5">
@@ -103,7 +103,7 @@ function UserProfile() {
             <button
               type='button'
               onClick={(e)=>{
-                setText(e.target.textContent)
+                setText(e.target.textContent.toLowerCase())
                 setActiveBtn('created')
               }}
               className={`${activeBtn === 'created' ? activeBtnStyles : notActiveBtnStyles }`}
@@ -113,7 +113,7 @@ function UserProfile() {
             <button
               type='button'
               onClick={(e)=>{
-                setText(e.target.textContent)
+                setText(e.target.textContent.toLowerCase())
                 setActiveBtn('saved')
               }}
               className={`${activeBtn === 'saved' ? activeBtnStyles : notActiveBtnStyles }`}
@@ -122,7 +122,11 @@ function UserProfile() {
             </button>
           </div>
           <div className="px-2">
-            {pins.le}
+            {pins?.length ? (
+              <MasonryLayout pins={pins} />
+            ):(
+              <div className='flex font-bold justify-center items-center text-xl w-full mt-8'>No pins found</div>
+            )}
           </div>
         </div>
       </div>

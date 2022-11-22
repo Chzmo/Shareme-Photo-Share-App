@@ -32,7 +32,8 @@ function Feed() {
   }, [categoryId])
   
 
-  if (loading) return <Spinner message="We are adding new ideas"/>
+  if (loading) return <Spinner message="We are adding new ideas"/>;
+  if (!pins?.length) return <div className='flex font-bold justify-center items-center text-xl w-full mt-8'>No pins found</div>;
   return (
     <div>
       {pins && <MasonryLayout pins={pins}/>}

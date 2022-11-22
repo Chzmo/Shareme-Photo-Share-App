@@ -9,8 +9,6 @@ import logo from '../assets/logo.png'
 const isNotActiveStyle = 'flex items-center px-5 gap-3 text-gray-500 hover:text-black transition-all duration-200 ease-in-out capitalize'
 const isActiveStyle = 'flex items-center px-5 gap-3 font-extrabord border-r-2 border-black transition-all duration-200 ease-in-out capitalize'
 
-const catergories = categories;
-
 const SideBar = ({user, closedToggle}) =>{
   const handleCloseSidebar = () => {
     if(closedToggle) closedToggle(false)
@@ -35,15 +33,20 @@ const SideBar = ({user, closedToggle}) =>{
             <RiHomeFill />
             Home
           </NavLink>
-          <h3 className="mt-2 px-5 text-base 2xl:text-xl">Discover catergories</h3>
-          {catergories.slice(0, catergories.length - 1).map((catergory) => (
+          <h3 className="mt-2 px-5 text-base 2xl:text-xl">Discover categories</h3>
+          {categories.slice(0, categories.length - 1).map((category) => (
             <NavLink
-            to={`/category/${catergory.name}`}
+            to={`/category/${category.name}`}
               className={({isActive})=> isActive ? isActiveStyle : isNotActiveStyle}
               onClick={handleCloseSidebar}
-              key={catergory.name}
+              key={categories.name}
             >
-              {catergory.name}
+              <img 
+                src={category.image} 
+                alt="category"
+                className="w-8 h-8 rounded-full shadow-lg"
+              />
+              {category.name}
             </NavLink>
           ))}
         </div>
