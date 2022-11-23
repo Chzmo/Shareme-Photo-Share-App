@@ -96,7 +96,9 @@ const deletePin = (id) =>{
                   target="_blank"
                   rel="noreferrer"
                   className="bg-white flex items-center gap-2 text-black font-bold p-2 pl-4 pr-4 rounded-full opacity-70 hover:opacity-100 hover:shadow-md"
-                  
+                  onClick={(e)=>{
+                    e.stopPropagation()
+                  }}
                 >
                 <BsFillArrowRightCircleFill />
                 {destination.length < 15 ?  destination: destination.slice(0, 10) + '...'}
