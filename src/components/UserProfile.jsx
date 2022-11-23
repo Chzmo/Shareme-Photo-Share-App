@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import {AiOutlineLogout} from 'react-icons/ai'
 import {useNavigate, useParams} from 'react-router-dom'
+import {googleLogout } from '@react-oauth/google'
 
 import{userCreatedPinsQuery, userQuery, userSavedPinsQuery} from './../utils/data'
 import {client} from '../client'
 import MasonryLayout from './MasonryLayout'
 import Spinner from './Spinner'
+import { AiOutlineLogout } from 'react-icons/ai'
 
 const randomImage = "https://source.unsplash.com/1600x900/?programming/nature,photography,technology"
 const activeBtnStyles = 'bg-red-500 text-white font-bold p-2 rounded-full w-20 outline-none';
@@ -19,7 +20,6 @@ function UserProfile() {
   
   const navigate = useNavigate();
   const {userId} = useParams();
-  const clientId = process.env.REACT_APP_GOOGLE_TOKEN;
 
   useEffect(()=>{
     const query = userQuery(userId);
@@ -56,6 +56,7 @@ function UserProfile() {
   }
 
   const logout = () =>{
+    googleLogout()
     localStorage.clear()
     navigate('/login');
   }
@@ -79,24 +80,19 @@ function UserProfile() {
             <h1 className='font-bold text-3xl text-center mt-3'>
               {user?.userName}
             </h1>
-            {/* <div className='absolute top-0 z-1 right-0 p-2'>
+            <div className='absolute top-0 z-1 right-0 p-2'>
               {(userId === user?._id && userId !== null) && (
-                <GoogleLogout
-                  clientId = {clientId}
-                  render={(renderProps)=>(
-                      <button
-                          type='button'
-                          className='bg-white p-2 rounded-full cursor-pointer outline-none shadow-md'                         onClick={renderProps.onClick}
-                          disabled={renderProps.disabled}
-                          >
-                          <AiOutlineLogout color="red" fontSize={21} />
-                      </button>
-                  )}
-                  onLogoutSuccess={logout}
-                  cookiePolicy="single_host_origin"
-              />
+                
+                <button
+                    type='button'
+                    className='bg-white p-2 rounded-full cursor-pointer outline-none shadow-md'
+                    onClick={logout}
+                    >
+                    <AiOutlineLogout color="red" fontSize={21} />
+                </button>
+                  
               )}
-            </div> */}
+            </div>
           </div>
           <div className="text-center mg-7">
             <button

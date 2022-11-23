@@ -167,7 +167,7 @@ function CreatePin() {
             {user && (
               <div className="flex gap-2 items-center rounded-lg">
                 <img 
-                  src={user?.imageUrl} 
+                  src={user?.picture} 
                   alt="user-profile"
                   className='rounded-full h-10 w-10' 
                   />
