@@ -45,8 +45,9 @@ Users should be able to:
 
 ### Continued development
 
-Still working on the design and adding more features!!!!
-Happy Coding!
+- Still working on the design and adding more features!!!!
+
 ## Author
 
 - Website - [Chisomo Zaliro Moyo](https://www.chzmo.com)
+- Happy Coding!
