@@ -31,7 +31,7 @@ const addComment = () =>{
         _key:uuidv4(),
         postedBy:{
           _type:'postedBy',
-          _ref:user.googleId
+          _ref:user.sub
         }
       }])
       .commit()

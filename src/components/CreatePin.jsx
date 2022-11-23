@@ -57,10 +57,10 @@ function CreatePin() {
             _ref: imageAsset?._id,
           }
         },
-        userId: user?.googleId,
+        userId: user?.sub,
         postedBy:{
           _type:'postedBy',
-          _ref:user?.googleId,
+          _ref:user?.sub,
         }
       }
 

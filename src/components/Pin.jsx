@@ -13,7 +13,8 @@ const [postHoverd, setPostHoverd] = useState(false);
 const navigate = useNavigate();
 const user = fetchUser();
 
-const alreadySaved = !!(save?.filter((item) => item?.postedBy?._id === user?.googleId))?.length;
+const alreadySaved = !!(save?.filter((item) => item?.postedBy?._id === user?.sub))?.length;
+
 const savePin = (id) =>{
   if(!alreadySaved){
     client
@@ -21,10 +22,10 @@ const savePin = (id) =>{
     .setIfMissing({save: []})
     .insert('after', 'save[-1]', [{
       _key:uuidv4(),
-      userId:user?.googleId,
+      userId:user?.sub,
       postedBy:{
         _type:'postedBy',
-        _ref:user?.googleId
+        _ref:user?.sub
       }
     }])
     .commit()
@@ -101,7 +102,7 @@ const deletePin = (id) =>{
                 {destination.length < 15 ?  destination: destination.slice(0, 10) + '...'}
                 </a>
               )}
-              {postedBy?._id === user?.googleId && (
+              {postedBy?._id === user?.sub && (
                 <button 
                   onClick={(e)=>{
                     e.stopPropagation()
@@ -123,7 +124,7 @@ const deletePin = (id) =>{
         <img 
           className='w-10 h-10 rounded-full object-cover'
           src={postedBy?.image}
-          alt={user?.userName}
+          alt={postedBy?.userName}
         />
         <p className="font-semibold capitalize">{postedBy?.userName}</p>
       </Link>

@@ -10,6 +10,7 @@ const isNotActiveStyle = 'flex items-center px-5 gap-3 text-gray-500 hover:text-
 const isActiveStyle = 'flex items-center px-5 gap-3 font-extrabord border-r-2 border-black transition-all duration-200 ease-in-out capitalize'
 
 const SideBar = ({user, closedToggle}) =>{
+  console.log(user);
   const handleCloseSidebar = () => {
     if(closedToggle) closedToggle(false)
   }
@@ -34,12 +35,12 @@ const SideBar = ({user, closedToggle}) =>{
             Home
           </NavLink>
           <h3 className="mt-2 px-5 text-base 2xl:text-xl">Discover categories</h3>
-          {categories.slice(0, categories.length - 1).map((category) => (
+          {categories.slice(0, categories.length - 1).map((category, key) => (
             <NavLink
             to={`/category/${category.name}`}
               className={({isActive})=> isActive ? isActiveStyle : isNotActiveStyle}
               onClick={handleCloseSidebar}
-              key={categories.name}
+              key={key}
             >
               <img 
                 src={category.image} 
@@ -60,7 +61,7 @@ const SideBar = ({user, closedToggle}) =>{
           <img src={user.image} alt="user-profile" className='w-10 h-10 rounded-full'/>
           <p>{user.userName}</p>
         </Link>
-      )}
+      ) }
     </div>
   )
 }
