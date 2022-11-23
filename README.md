@@ -21,6 +21,7 @@ Users should be able to:
 - View different pins/images posted by other users
 - View specific pins selected by the user with related pins if exits
 - Create a Pin by clicking a on a plus button and filling all details
+- Logout from the system
 
 ### Screenshot
 
