@@ -16,12 +16,14 @@ This is a photo sharing web application [SHAREME](https://shareme-chzmo.netlify.
 
 Users should be able to:
 
-- View the application on defferent devices
-- Login using their Email
-- View different pins/images posted by other users
-- View specific pins selected by the user with related pins if exits
-- Create a Pin by clicking a on a plus button and filling all details
-- Logout from the system
+- View the application on defferent devices.
+- Login using their Email.
+- View different pins/images posted by other users.
+- View specific pins selected by the user with related pins if exits.
+- comment on specific pins.
+- Create a Pin by clicking a on a plus icon on top right.
+- Delete a Pin by clicking a on delete icon.
+- Logout from the system.
 
 ### Screenshot
 
