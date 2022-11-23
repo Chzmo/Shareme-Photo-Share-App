@@ -41,7 +41,7 @@ Users should be able to:
 - CSS custom properties
 - Flexbox
 - Mobile-first workflow
-- [Tailwind](https://tailwindcss.com/)
+- [Tailwind Css](https://tailwindcss.com/)
 - [Sanity Studio](https://www.sanity.io/) - Backend
 - [Goodle OAuth](https://developers.google.com/identity/protocols/oauth2) - Authentication
 - [ReactJs](https://swiperjs.com/) - Js Framework
