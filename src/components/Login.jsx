@@ -10,9 +10,6 @@ import { client } from '../client';
 
 function Login() {
     const navigate = useNavigate();
-    useEffect(()=>{
-        
-    })
 
     const responseGoogle = (response)=>{    
         const decode = jwtDecode(response.credential);
