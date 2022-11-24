@@ -15,7 +15,8 @@ function App() {
   useEffect(() =>{
     const user = fetchUser();
     if(!user) navigate('/login');
-  },[])
+  }, [])
+
   return (
     <GoogleOAuthProvider clientId={`${clientId}`}>
       <Routes>

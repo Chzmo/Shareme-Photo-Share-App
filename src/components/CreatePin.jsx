@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
 import {AiOutlineCloudUpload} from 'react-icons/ai';
 import {MdDelete} from 'react-icons/md';
 import {useNavigate} from 'react-router-dom';
@@ -21,6 +21,10 @@ function CreatePin() {
   const user = fetchUser();
   const navigate = useNavigate();
   
+  useEffect(() =>{
+    if(!user) navigate('/login');
+  }, [])
+
   const uploadImage = (e) => {
     const {type} = e.target.files[0];
    
