@@ -31,7 +31,7 @@ Users should be able to:
 
 ### Links
 
-- Live Site URL: [https://chzmo-.netlify.app/](https://chzmo-shareme.netlify.app/)
+- Live Site URL: [https://chzmo-shareme.netlify.app/](https://chzmo-shareme.netlify.app/)
 
 ## My process
 
