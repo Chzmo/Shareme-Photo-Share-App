@@ -16,7 +16,7 @@ This is a photo sharing web application [SHAREME](https://shareme-chzmo.netlify.
 
 Users should be able to:
 
-- View the application on defferent devices.
+- View the application on different devices.
 - Login using their Email.
 - View different pins/images posted by other users.
 - View specific pins selected by the user with related pins if exits.
