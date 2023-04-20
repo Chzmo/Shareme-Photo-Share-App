@@ -25,7 +25,7 @@ const SideBar = ({user, closedToggle}) =>{
         >
           <img src={logo} alt="logo" className='w-16 rounded-full'/>
         </Link>
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2 pt-3">
           <NavLink
             to="/"
             className={({isActive})=> isActive ? isActiveStyle : isNotActiveStyle}
